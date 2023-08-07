@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vprodb
+  name: db01
   labels:
-    app: vprodb
+    app: db01
 spec:
   selector:
     matchLabels:
-      app: vprodb
+      app: db01
   replicas: 1
   template:
     metadata:
       labels:
-        app: vprodb
+        app: db01
     spec:
       containers:
-        - name: vprodb
+        - name: db01
           image: tonythetiger323/vprofiledb:latest
           #args:
             #- "--ignore-db-dir=lost+found"
@@ -23,7 +23,7 @@ spec:
             - mountPath: /var/lib/mysql
               name: vpro-db-data
           ports:
-            - name: vprodb-port
+            - name: db01-port
               containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
